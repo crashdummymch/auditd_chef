@@ -10,22 +10,44 @@
 #x - execute the file
 #a - change in the file's attribute
 
-
+# docker etc directory and files
 -w <%= @node['auditd']['rules']['docker']['etc_docker'] %> -k docker
 -w <%= @node['auditd']['rules']['docker']['etc_docker_daemon.json'] %> -k docker
+<% if @node['auditd']['rules']['docker']['etc_sysconfig_docker'] != '' %>
 -w <%= @node['auditd']['rules']['docker']['etc_sysconfig_docker'] %> -k docker
--w <%= @node['auditd']['rules']['docker']['etc_docker-network'] %> -k docker
--w <%= @node['auditd']['rules']['docker']['etc_docker-storage'] %> -k docker
--w <%= @node['auditd']['rules']['docker']['etc_docker-storage-setup'] %> -k docker
+<% end %>
+<% if @node['auditd']['rules']['docker']['etc_sysconfig_docker-network'] != '' %>
+-w <%= @node['auditd']['rules']['docker']['etc_sysconfig_docker-network'] %> -k docker
+<% end %>
+<% if @node['auditd']['rules']['docker']['etc_sysconfig_docker-storage'] != '' %>
+-w <%= @node['auditd']['rules']['docker']['etc_sysconfig_docker-storage'] %> -k docker
+<% end %>
+<% if @node['auditd']['rules']['docker']['etc_sysconfig_docker-storage-setup'] != '' %>
+-w <%= @node['auditd']['rules']['docker']['etc_sysconfig_docker-storage-setup'] %> -k docker
+<% end %>
+
+<% if @node['auditd']['rules']['docker']['systemd_docker'] != '' %>
+# docker systemd specific rules
 -w <%= @node['auditd']['rules']['docker']['systemd_docker'] %> -k docker
 <% if @node['auditd']['rules']['docker']['systemdsocket_docker'] != '' %>
 -w <%= @node['auditd']['rules']['docker']['systemdsocket_docker'] %> -k docker
 <% end %>
+<% end %>
+
+<% if @node['auditd']['rules']['docker']['initd_docker'] != '' %>
+# docker sysvinit/initd rules
+-w <%= @node['auditd']['rules']['docker']['initd_docker'] %>
+<% end %>
+
+# docker log directory
 -w <%= @node['auditd']['rules']['docker']['log_docker'] %> -k docker
+
+# docker bin files
 -w <%= @node['auditd']['rules']['docker']['bin_docker-containerd-current'] %> -k docker
 -w <%= @node['auditd']['rules']['docker']['bin-docker-containerd-shim-current'] %> -k docker
 -w <%= @node['auditd']['rules']['docker']['bin_docker-ctr-current'] %> -k docker
 -w <%= @node['auditd']['rules']['docker']['bin_dockerd-current'] %> -k docker
 -w <%= @node['auditd']['rules']['docker']['bin_docker-containerd'] %> -k docker
 -w <%= @node['auditd']['rules']['docker']['bin_docker-containerd-shim'] %> -k docker
+-w <%= @node['auditd']['rules']['docker']['bin_docker-ctr'] %> -k docker
 -w <%= @node['auditd']['rules']['docker']['bin_docker'] %> -k docker
