@@ -1,5 +1,6 @@
 default['auditd']['package']['action']               = :upgrade
 default['auditd']['service']['action']               = [:enable, :start]
+default['auditd']['conf']['auditd.conf']             = '/etc/audit/auditd.conf'
 default['auditd']['conf']['local_events']            = 'yes'
 default['auditd']['conf']['write_logs']              = 'yes'
 default['auditd']['conf']['log_file']                = '/var/log/audit/audit.log'
@@ -32,5 +33,5 @@ default['auditd']['conf']['enable_krb5']             = 'no'
 default['auditd']['conf']['krb5_principal']          = 'auditd'
 default['auditd']['conf']['krb5_key_file']           = ''
 default['auditd']['conf']['distribute_network']      = 'no'
-default['auditd']['rules']['augenrules']             = {'cis.rules' => :create }
+default['auditd']['rules']['augenrules']             = { 'cis.rules' => :create }
 default['auditd']['rules']['buffers']                = 320
