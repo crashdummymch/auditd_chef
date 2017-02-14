@@ -1,0 +1,48 @@
+# This file is managed by chef
+#
+# This file controls the configuration of the audit daemon
+#
+<% if @node['packages']['audit']['version'] >= "2.6.5" %>
+local_events = <%= node['auditd']['conf']['local_events'] %>
+write_logs = <%= node['auditd']['conf']['write_logs'] %>
+<% end %>
+log_file = <%= node['auditd']['conf']['log_file'] %>
+log_group = <%= node['auditd']['conf']['log_group'] %>
+log_format = <%= node['auditd']['conf']['log_format'] %>
+flush = <%= node['auditd']['conf']['flush'] %>
+freq = <%= node['auditd']['conf']['freq'] %>
+max_log_file = <%= node['auditd']['conf']['max_log_file'] %>
+num_logs = <%= node['auditd']['conf']['num_logs'] %>
+priority_boost = <%= node['auditd']['conf']['priority_boost'] %>
+disp_qos = <%= node['auditd']['conf']['disp_qos'] %>
+dispatcher = <%= node['auditd']['conf']['dispatcher'] %>
+name_format = <%= node['auditd']['conf']['name_format'] %>
+<% if @node['auditd']['conf']['name'] != '' %>
+name = <%= node['auditd']['conf']['name'] %>
+<% end %>
+max_log_file_action = <%= node['auditd']['conf']['max_log_file_action'] %>
+space_left = <%= node['auditd']['conf']['space_left'] %>
+space_left_action = <%= node['auditd']['conf']['space_left_action'] %>
+action_mail_acct = <%= node['auditd']['conf']['action_mail_acct'] %>
+admin_space_left = <%= node['auditd']['conf']['admin_space_left'] %>
+admin_space_left_action = <%= node['auditd']['conf']['admin_space_left_action'] %>
+disk_full_action = <%= node['auditd']['conf']['disk_full_action'] %>
+disk_error_action = <%= node['auditd']['conf']['disk_error_action'] %>
+use_libwrap = <%= node['auditd']['conf']['use_libwrap'] %>
+<% if @node['auditd']['conf']['tcp_listen_port'] != '' %>
+tcp_listen_port = <%= node['auditd']['conf']['tcp_listen_port'] %>
+<% end %>
+tcp_listen_queue = <%= node['auditd']['conf']['tcp_listen_queue'] %>
+tcp_max_per_addr = <%= node['auditd']['conf']['tcp_max_per_addr'] %>
+<% if @node['auditd']['conf']['tcp_client_ports'] != '' %>
+tcp_client_ports = <%= node['auditd']['conf']['tcp_client_ports'] %>
+<% end %>
+tcp_client_max_idle = <%= node['auditd']['conf']['tcp_client_max_idle'] %>
+enable_krb5 = <%= node['auditd']['conf']['enable_krb5'] %>
+krb5_principal = <%= node['auditd']['conf']['krb5_principal'] %>
+<% if @node['auditd']['conf']['krb5_key_file'] != '' %>
+krb5_key_file = <%= node['auditd']['conf']['krb5_key_file'] %>
+<% end %>
+<% if @node['packages']['audit']['version'] >= "2.6.5" %>
+distribute_network = <%= node['auditd']['conf']['distribute_network'] %>
+<% end %>

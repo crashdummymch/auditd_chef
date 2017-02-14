@@ -1,0 +1,31 @@
+# This file contains the audit of the docker binary
+#
+# First rule - delete all
+-D
+
+#-w path-to-file -p permissions -k keyname
+#where the permission are any one of the following:
+#r - read of the file
+#w - write to the file
+#x - execute the file
+#a - change in the file's attribute
+
+
+-w <%= @node['auditd']['rules']['docker']['etc_docker'] %> -k docker
+-w <%= @node['auditd']['rules']['docker']['etc_docker_daemon.json'] %> -k docker
+-w <%= @node['auditd']['rules']['docker']['etc_sysconfig_docker'] %> -k docker
+-w <%= @node['auditd']['rules']['docker']['etc_docker-network'] %> -k docker
+-w <%= @node['auditd']['rules']['docker']['etc_docker-storage'] %> -k docker
+-w <%= @node['auditd']['rules']['docker']['etc_docker-storage-setup'] %> -k docker
+-w <%= @node['auditd']['rules']['docker']['systemd_docker'] %> -k docker
+<% if @node['auditd']['rules']['docker']['systemdsocket_docker'] != '' %>
+-w <%= @node['auditd']['rules']['docker']['systemdsocket_docker'] %> -k docker
+<% end %>
+-w <%= @node['auditd']['rules']['docker']['log_docker'] %> -k docker
+-w <%= @node['auditd']['rules']['docker']['bin_docker-containerd-current'] %> -k docker
+-w <%= @node['auditd']['rules']['docker']['bin-docker-containerd-shim-current'] %> -k docker
+-w <%= @node['auditd']['rules']['docker']['bin_docker-ctr-current'] %> -k docker
+-w <%= @node['auditd']['rules']['docker']['bin_dockerd-current'] %> -k docker
+-w <%= @node['auditd']['rules']['docker']['bin_docker-containerd'] %> -k docker
+-w <%= @node['auditd']['rules']['docker']['bin_docker-containerd-shim'] %> -k docker
+-w <%= @node['auditd']['rules']['docker']['bin_docker'] %> -k docker
