@@ -1,8 +1,7 @@
 #
 # Cookbook Name:: auditd
-# Library:: default
+# Module:: Auditd
 #
-
 module Auditd
   # definition to auto-pic package name
   def auditd_package_name(platform_family)

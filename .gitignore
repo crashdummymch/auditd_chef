@@ -16,9 +16,11 @@ Gemfile.lock
 .kitchen.yml
 .kitchen/
 .kitchen.local.yml
+.kitchen*
 coverage/
 .env.sh
 Vagrantfile
+.rubocop.yml
 
 # sublime text
 *.sublime-project

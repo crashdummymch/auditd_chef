@@ -27,7 +27,7 @@ group :test do
   gem 'test-kitchen', '= 1.4.2'
   gem 'kitchen-digitalocean', '>= 0.8.0'
   gem 'kitchen-vagrant'
-  gem 'kitchen-ec2'
+  gem 'kitchen-ec2', '= 1.2.0'
   gem 'listen', '< 3.1.0'
   gem 'activesupport', '< 5'
   gem 'buff-extensions', '= 1.0.0'
